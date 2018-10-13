@@ -26,6 +26,18 @@ Here's the initial design for the v1.0 state. It may change over time and we pla
 
 ![Hangar Diagram](./images/hangar.png)
 
+* **Build Agents :** Each agent will have a Hangar Daemon on it, managing artefacts local to the agent. 
+   * It will use torrenting software to retrieve any dependencies from other agents or from the central API as versions of artefacts can be very similar when working with continuous delivery/deployment. 
+   * The daemon will be responsible for uploading the artefact, with the option of having it work asynchronously so you can get on with the rest of your build. 
+   * Metrics about your artefact transport will be uploaded to the data science module, allowing a better picture of what artefacts are being used. On start-up of the agent, the daemon will contact the data science module and download only the most frequently downloaded artefacts. 
+* **Lifecycle Management :** Storage of artefacts will be managed by this module, moving artefacts into cheaper storage as they become less frequently required then delete them (if requested) after a period of time.
+* **Data Science :** Data about how these artefacts are being used is held here, allowing us to actively pre-empt the requirement for artefacts in different locations, advise the lifecycle management module about what to delete and giving the visualisation module a basis for explaining the system. Being data-driven is a good thing.
+* **Visualisation :** To allow the engineers to see what is going on in the platform and what is available. 
+* **API :** Where the work happens. Provides a torrent master for the build agents, deals with uploading and downloading of artefacts for engineers. Very similar code to the build agent daemons and will be stateless, allowing a rolling update without downtime. 
+
+Broken down into milestones, this wil be initially built for AWS / Java.
+
+v0.1 **API :** Java API endpoint to allow Engineers to upload and download artefacts from EBS/S3. 
 
 
 
