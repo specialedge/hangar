@@ -33,11 +33,11 @@ Here's the initial design for the v1.0 state. It may change over time and we pla
 * **Lifecycle Management :** Storage of artefacts will be managed by this module, moving artefacts into cheaper storage as they become less frequently required then delete them (if requested) after a period of time.
 * **Data Science :** Data about how these artefacts are being used is held here, allowing us to actively pre-empt the requirement for artefacts in different locations, advise the lifecycle management module about what to delete and giving the visualisation module a basis for explaining the system. Being data-driven is a good thing.
 * **Visualisation :** To allow the engineers to see what is going on in the platform and what is available. 
-* **API :** Where the work happens. Provides a torrent master for the build agents, deals with uploading and downloading of artefacts for engineers. Very similar code to the build agent daemons and will be stateless, allowing a rolling update without downtime. 
+* **[API](https://github.com/specialedge/hangar-api) :** Where the work happens. Provides a torrent master for the build agents, deals with uploading and downloading of artefacts for engineers. Very similar code to the build agent daemons and will be stateless, allowing a rolling update without downtime. 
 
-Broken down into milestones, this wil be initially built for AWS / Java.
+The inital deliverables for this project are as follows...
 
-v0.1 **API :** Java API endpoint to allow Engineers to upload and download artefacts from EBS/S3. 
+v0.1 - [Initial API supporting Maven / Gradle downloads](https://github.com/orgs/specialedge/projects/1)
 
 
 
